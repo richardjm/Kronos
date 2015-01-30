@@ -4,17 +4,21 @@ $fn=100;
 
 // A couple of settings to allow for wiggle room
 bearingOD = 22.2;
-screwHoleD = 5.1;
+
+M5ScrewHoleD = 5.2;
+M5HeadD = 9;
+
 fillet = 2.5;
 
 module ScrewHole()
 {
-	screwHoleR = screwHoleD / 2;
+	screwDepth = 20;
+	screwHoleR = M5ScrewHoleD / 2;
 	union()
 	{
-		translate([0,0,-1]) cylinder(18,screwHoleR,screwHoleR);
-		translate([0,0,-10.001]) cylinder(h=10,r=screwHoleD);
-		translate([0,-screwHoleR,-1]) cube([screwHoleR,screwHoleD,18]);
+		translate([0,0,-1]) cylinder(screwDepth + 1,screwHoleR,screwHoleR);
+		translate([0,-screwHoleR,-1]) cube([screwHoleR,M5ScrewHoleD,screwDepth + 1]);
+		translate([0,0,-screwDepth-0.001]) cylinder(h=screwDepth, r=M5HeadD/2);
 	}
 }
 
