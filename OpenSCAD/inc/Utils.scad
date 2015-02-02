@@ -1,6 +1,6 @@
 include <Settings.scad>
 
-module M5x20ScrewHole()
+module M5ScrewHole()
 {
 	screwDepth = 20;
 	screwHoleR = M5ScrewHoleD / 2;

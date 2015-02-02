@@ -5,7 +5,6 @@ $fn=100;
 
 // A couple of settings to allow for wiggle room
 bearingOD = 22.2;
-
 fillet = 2.5;
 
 difference()
@@ -27,7 +26,7 @@ difference()
 		translate([0,0,9.501])
 			roundedCylinder (h=10.6, r=14, rr=fillet, bottom=true);
 		// Screw holes
-		translate([0,-19,10]) rotate([0,-90,0]) M5x20ScrewHole();
-		translate([0,19,10]) rotate([0,-90,0]) M5x20ScrewHole();
+		translate([0,-19,10]) rotate([0,-90,0]) M5ScrewHole();
+		translate([0,19,10]) rotate([0,-90,0]) M5ScrewHole();
 	};
 }
