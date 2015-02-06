@@ -8,8 +8,6 @@ bearingOD = 22.2;
 bearingHeight = 7;
 bearingInset = 2;
 
-pivotNutR = 3.5;
-pivotNutDepth = 3;
 pivotBoltD = 3.2;
 
 fillet = 2.5;
@@ -26,8 +24,8 @@ difference()
             cube([8,50,20]);
 	};
     
-    translate([bearingInset,0,topOfBearing-bearingHeight-0.99-pivotNutDepth])
-        cylinder(h=pivotNutDepth, r=pivotNutR, $fn=6);
+    translate([bearingInset,0,topOfBearing-bearingHeight-1-M3NutHeight])
+        M3Nut();
     // Through hole
     translate([bearingInset,0,-0.1])
         cylinder (h=21,r = pivotBoltD / 2);

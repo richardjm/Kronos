@@ -1,5 +1,25 @@
 include <Settings.scad>
 
+nutWiggle = 0.05;
+
+M3NutHeight = 2.4;
+M4NutHeight = 3.2;
+
+module M3Nut()
+{
+    Nut(5.5, M3NutHeight);
+}
+
+module M4Nut()
+{
+    Nut(7, M4NutHeight);
+}
+
+module Nut(flatDistance, height)
+{
+    cylinder(r = flatDistance / 2 / cos(180 / 6) + nutWiggle, h = height + nutWiggle, $fn=6);
+}
+
 module M5ScrewHole()
 {
 	screwDepth = 20;
