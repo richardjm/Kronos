@@ -3,7 +3,7 @@ include <inc/Utils.scad>
 
 $fn=100;
 
-boxY = 57.5;
+boxY = 60;
 
 topOfBearing = 20-8;
 bearingOD = 22.2;
@@ -15,7 +15,7 @@ pivotBoltD = 3.2;
 fillet = 2.5;
 
 // 624ZZ idler
-idlerD = 21;
+idlerD = 26;
 idlerBoltD = 4.3;
 idlerNutR=4.1;
 idlerNutDepth=4;
@@ -24,8 +24,8 @@ difference()
 {
 	union()
 	{
-        translate([bearingInset+5,-6-idlerD/2,10])
-             roundedBox([23,10,20], radius=fillet, sidesonly=true);
+        translate([bearingInset+5,-3.5-idlerD/2,10])
+             roundedBox([29,19,20], radius=fillet, sidesonly=true);
         translate([bearingInset,0,0])
             roundedCylinder(h=topOfBearing,r=16,rr=fillet);
 		translate([-8,-(boxY-50)/2,10])
@@ -48,18 +48,28 @@ difference()
         cylinder (h=bearingHeight,r = bearingOD/2);
     // Cutout above bearing
     translate([bearingInset,0,topOfBearing - 0.001])
-        roundedCylinder (h=20, r=14, rr=fillet, bottom=true);
+        union(){
+            roundedCylinder (h=20, r=14, rr=fillet, bottom=true);
+            // Pulley
+            %cylinder(r=17/2,h=17.5);
+        };
     // Screw holes
-    translate([0,-26.5,10])
+    translate([0,-29,10])
         rotate([0,-90,0])
         M5ScrewHole();
     translate([0,19,10])
         rotate([0,-90,0])
         M5ScrewHole();
     // Idler screw hole and nut trap
+    translate([bearingInset+idlerD/2,-6-idlerD/2,0])
+        union(){
+            translate([0,0,M4NylockHeight+0.5])
+                #cylinder(r=idlerBoltD/2,h=15);
+            translate([0,0,20-3.5])
+                // Idler
+                #cylinder(r=idlerD/2,h=14);
+        };
     translate([bearingInset+idlerD/2,-6-idlerD/2,-0.5])
-        cylinder(r=idlerBoltD/2,h=21);
-    translate([bearingInset+idlerD/2,-6-idlerD/2,-0.5])
-        M4Nut();
+        M4Nylock();
         //cylinder(h=idlerNutDepth, r=idlerNutR, $fn=6);
 }
