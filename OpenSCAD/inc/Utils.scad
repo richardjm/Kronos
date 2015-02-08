@@ -2,24 +2,21 @@ include <Settings.scad>
 
 wiggle = 0.05;
 
+M3FlatToFlat = 5.5;
 M3NutHeight = 2.4;
+M4FlatToFlat = 7;
 M4NutHeight = 3.2;
 M4NylockHeight = 5;
+M5FlatToFlat = 8;
+M5NutHeight = 4.7;
+M5NylockHeight = 5.5;
 
-module M3Nut()
-{
-    Nut(5.5, M3NutHeight);
-}
+module M3Nut()    { Nut(M3FlatToFlat, M3NutHeight); }
+module M4Nut()    { Nut(M4FlatToFlat, M4NutHeight); }
+module M5Nut()    { Nut(M5FlatToFlat, M5NutHeight); }
 
-module M4Nut()
-{
-    Nut(7, M4NutHeight);
-}
-
-module M4Nylock()
-{
-    Nut(7, M4NylockHeight);
-}
+module M4Nylock() { Nut(M4FlatToFlat, M4NylockHeight); }
+module M5Nylock() { Nut(M5FlatToFlat, M5NylockHeight); }
 
 module Nut(flatDistance, height)
 {
